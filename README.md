@@ -4,6 +4,17 @@
 
 ---
 
+# 快速部署
+```bash
+mkdir baah
+cd baah
+git clone https://github.com/CNflysky/BAAH.git --depth 1
+mv BAAH/docker-compose.yml .
+docker-compose up -d
+```
+部署完成后，通过网页控制台配置脚本，随后可以通过点击"保存并执行(GUI)"来运行脚本。
+---
+
 BAAH可以帮助你在模拟器内自动完成碧蓝档案（国际服，日服，国服）的每日任务
 
 BAAH can help you finish daily tasks of BlueArchive (Global server, Japan server, CN server) in emulator automatically.
