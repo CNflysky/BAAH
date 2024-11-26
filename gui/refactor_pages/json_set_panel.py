@@ -27,7 +27,7 @@ from ..define import gui_shared_config
 from nicegui import ui, app, run
 from typing import Callable
 import os
-
+from platform import system
 
 class ConfigPanel:
     """
@@ -128,7 +128,13 @@ def show_json_panel(json_file_name: str):
                 ui.notify(curr_config.get_text("notice_save_success"))
                 ui.notify(curr_config.get_text("notice_start_run"))
                 # 打开同目录中的BAAH.exe，传入当前config的json文件名
-                os.system(f'start BAAH.exe "{json_file_name}"')
+                platform: str = system()
+                if platform == "Windows":
+                    os.system(f'start BAAH.exe "{json_file_name}"')
+                elif platform == "Linux":
+                    os.system(f"/usr/bin/env python3 main.py {json_file_name}")
+                else:
+                    raise RuntimeError("Unsupported platform.")
 
             ui.button(curr_config.get_text("button_save_and_run_terminal"), on_click=save_and_alert_and_run_in_terminal)
 

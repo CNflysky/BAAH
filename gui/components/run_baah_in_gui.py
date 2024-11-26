@@ -5,6 +5,7 @@ import threading
 import queue
 import locale
 from nicegui import ui, run
+from platform import system
 
 # 显示命令行输出的地方
 
@@ -28,7 +29,15 @@ def run_baah_task(msg_obj, logArea, config):
 
     # 定义运行程序的命令和参数
     # 运行BAAH_main()方法
-    command = ["BAAH.exe", config.nowuserconfigname]
+
+    platform: str = system()
+    if platform == "Linux":
+        command = ["/usr/bin/env", "python3", "main.py", config.nowuserconfigname]
+    elif platform == "Windows":
+        command = ["BAAH.exe", config.nowuserconfigname]
+    else:
+        raise RuntimeError("Unsupported platform.")
+    
     print("RUN")
     logArea.push(config.nowuserconfigname)
     # 使用subprocess.Popen来运行外部程序
