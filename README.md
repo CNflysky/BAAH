@@ -9,10 +9,11 @@
 mkdir baah
 cd baah
 git clone https://github.com/CNflysky/BAAH.git --depth 1
+cp BAAH/BAAH_CONFIGS/example.json BAAH/BAAH_CONFIGS/docker.json
 mv BAAH/docker-compose.yml .
 docker-compose up -d
 ```
-部署完成后，通过网页控制台配置脚本，随后可以通过点击"保存并执行(GUI)"来运行脚本。
+部署完成后，通过网页控制台配置`docker.json`文件，随后通过点击"保存并执行(GUI)"来运行脚本。
 
 ---
 
