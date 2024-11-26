@@ -1,0 +1,23 @@
+services:
+  baah:
+    build:
+      context: ./BAAH
+      dockerfile: Dockerfile
+    image: baah
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./BAAH:/baah"
+
+  redroid:
+    image: cnflysky/redroid-rk3588:lineage-20
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - "5556:5555"
+    volumes:
+      - "./redroid-data:/data"
+    command: 
+      - "androidboot.redroid_dpi=240"
+      - "androidboot.redroid_magisk=1"
+      - "androidboot.redroid_fake_wifi=1"
